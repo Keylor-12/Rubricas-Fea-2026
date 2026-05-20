@@ -1,8 +1,8 @@
 :root {
-  --rosa: #e91e8c;
+  --rosa: #2a7630;
   --rosa-claro: #fce4f3;
-  --rosa-oscuro: #b5006e;
-  --gris-bg: #f8f6f2;
+  --rosa-oscuro: #113417;
+  --gris-bg: #b9b8b5;
   --gris-borde: #e0dbd4;
   --texto: #1a1a1a;
   --texto-sec: #555;
@@ -19,7 +19,7 @@
   height: auto;      /* Mantiene la proporción de la imagen */
   
   /* Transparencia (0.0 es invisible, 1.0 es totalmente opaca) */
-  opacity: 0.2;      /* 20% de opacidad (bastante transparente) */
+  opacity: 0.5;      /* 50% de opacidad (medianamente transparente) */
   
   /* Opcional: Evita que la imagen tape clics en botones que estén detrás */
   pointer-events: none; 
@@ -35,7 +35,7 @@
   height: auto;      /* Mantiene la proporción de la imagen */
   
   /* Transparencia (0.0 es invisible, 1.0 es totalmente opaca) */
-  opacity: 0.2;      /* 20% de opacidad (bastante transparente) */
+  opacity: 0.5;      /* 50% de opacidad (medianamente transparente) */
   
   /* Opcional: Evita que la imagen tape clics en botones que estén detrás */
   pointer-events: none; 
