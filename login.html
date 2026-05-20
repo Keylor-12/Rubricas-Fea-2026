@@ -60,93 +60,72 @@
 
 </main>
 
-<script>
+<script type="module">
 
-const USERS = [
+import { db } from "./firebase.js";
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  {
-    username: 'literario',
-    password: '1234',
-    grupo: 'literario'
-  },
+const loginBtn = document.getElementById('login-btn');
+const loginError = document.getElementById('login-error');
 
-  {
-    username: 'visuales',
-    password: '1234',
-    grupo: 'visuales'
-  },
+loginBtn.addEventListener('click', async () => {
 
-  {
-    username: 'musica',
-    password: '1234',
-    grupo: 'musica'
-  },
+  const username = document.getElementById('login-username').value;
+  const password = document.getElementById('login-password').value;
 
-  {
-    username: 'escenica',
-    password: '1234',
-    grupo: 'escenica'
-  }
+  try {
 
-];
+    const snap = await getDocs(collection(db, "usuarios"));
 
-const loginBtn =
-  document.getElementById('login-btn');
+    let found = false;
 
-const loginError =
-  document.getElementById('login-error');
+    snap.forEach((doc) => {
 
-loginBtn.addEventListener('click', () => {
+      const datos = doc.data();
 
-  const user =
-    document.getElementById('login-username').value;
+      if (
+        datos.usuario === username &&
+        datos.password === password
+      ) {
 
-  const pass =
-    document.getElementById('login-password').value;
+        found = true;
 
-  const ok = USERS.find(
-    u => u.username === user && u.password === pass
-  );
+        // guardar sesión
+        localStorage.setItem("username", datos.nombre)
+        localStorage.setItem("user", datos.usuario);
+        localStorage.setItem("password", datos.password);
+        localStorage.setItem("rol", datos.rol);
 
-  if(ok){
+        // redirecciones
+        if (datos.rol === "literarias") {
+          window.location.href = "literario.html";
+        }
+        else if (datos.rol === "visuales") {
+          window.location.href = "visuales.html";
+        }
+        else if (datos.rol === "musicales") {
+          window.location.href = "musica.html";
+        }
+        else if (datos.rol === "escenica") {
+          window.location.href = "esenicas.html";
+        }
+        else if (datos.rol === "admin") {
+          window.location.href = "admin.html";
+        }
+      }
 
-    localStorage.setItem('loggedIn', 'true');
+    });
 
-    localStorage.setItem('username', ok.username);
-
-    localStorage.setItem('grupo', ok.grupo);
-
-    // Redirección según el grupo
-
-    if(ok.grupo === 'literario'){
-
-      window.location.href = 'literario.html';
-
+    if (!found) {
+      loginError.textContent = "Usuario o contraseña incorrectos";
     }
 
-    else if(ok.grupo === 'visuales'){
-
-      window.location.href = 'visuales.html';
-
-    }
-
-    else if(ok.grupo === 'musica'){
-
-      window.location.href = 'musica.html';
-
-    }
-
-    else if(ok.grupo === 'escenica'){
-
-      window.location.href = 'esenicas.html';
-
-    }
-
-  }else{
-
-    loginError.textContent =
-      'Usuario o contraseña incorrectos';
-
+  } catch (error) {
+    console.log(error);
+    loginError.textContent = "Error de sistema";
   }
 
 });

@@ -1,6 +1,3 @@
-Esto es lo ultimo cambiar usuarios
-
 
 CONECTAR A BASE PRINCIPAL
-
 Github pages
