@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login</title>
+
+  <link rel="stylesheet" href="styleindex.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span>FEA 2026</span>
+  </div>
+
+  <img class="topbar-logo" src="Imagenes/26FEA.webp" alt="Logo FEA 2026">
+
+</header>
+<img class="imagen-esquina" src="Imagenes/ciber.jpeg" alt="Marca de agua">
+<img class="imagen-esquina-iz" src="Imagenes/Untitled.jpeg" alt="Marca de agua">
+<main>
+
+  <section class="section-home">
+
+    <div class="login-card">
+
+      <h2>Iniciar Sesión</h2>
+
+      <div class="login-error" id="login-error"></div>
+
+      <div>
+        <label>Usuario</label>
+
+        <input
+          id="login-username"
+          type="text"
+          placeholder="usuario"
+        >
+      </div>
+
+      <div>
+        <label>Contraseña</label>
+
+        <input
+          id="login-password"
+          type="password"
+          placeholder="******"
+        >
+      </div>
+
+      <button id="login-btn" class="btn primary">
+        Entrar
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+
+const USERS = [
+
+  {
+    username: 'literario',
+    password: '1234',
+    grupo: 'literario'
+  },
+
+  {
+    username: 'visuales',
+    password: '1234',
+    grupo: 'visuales'
+  },
+
+  {
+    username: 'musica',
+    password: '1234',
+    grupo: 'musica'
+  },
+
+  {
+    username: 'escenica',
+    password: '1234',
+    grupo: 'escenica'
+  }
+
+];
+
+const loginBtn =
+  document.getElementById('login-btn');
+
+const loginError =
+  document.getElementById('login-error');
+
+loginBtn.addEventListener('click', () => {
+
+  const user =
+    document.getElementById('login-username').value;
+
+  const pass =
+    document.getElementById('login-password').value;
+
+  const ok = USERS.find(
+    u => u.username === user && u.password === pass
+  );
+
+  if(ok){
+
+    localStorage.setItem('loggedIn', 'true');
+
+    localStorage.setItem('username', ok.username);
+
+    localStorage.setItem('grupo', ok.grupo);
+
+    // Redirección según el grupo
+
+    if(ok.grupo === 'literario'){
+
+      window.location.href = 'literario.html';
+
+    }
+
+    else if(ok.grupo === 'visuales'){
+
+      window.location.href = 'visuales.html';
+
+    }
+
+    else if(ok.grupo === 'musica'){
+
+      window.location.href = 'musica.html';
+
+    }
+
+    else if(ok.grupo === 'escenica'){
+
+      window.location.href = 'esenicas.html';
+
+    }
+
+  }else{
+
+    loginError.textContent =
+      'Usuario o contraseña incorrectos';
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
