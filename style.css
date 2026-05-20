@@ -1,14 +1,14 @@
   :root {
-    --rosa: #e91e8c;
+    --rosa: #224729;
     --rosa-claro: #fce4f3;
-    --rosa-oscuro: #b5006e;
-    --gris-bg: #f8f6f2;
-    --gris-borde: #e0dbd4;
-    --texto: #1a1a1a;
-    --texto-sec: #555;
+    --rosa-oscuro: #5dbc6d;
+    --gris-bg: #b9b8b5;
+    --gris-borde: #142919;
+    --texto: #000000;
+    --texto-sec: #052706;
     --verde: #2e7d32;
-    --rojo: #c62828;
-    --blanco: #ffffff;
+    --rojo: #000000;
+    --blanco: #0a2618;
     --sombra: 0 2px 12px rgba(0,0,0,0.08);
   }
 /* Contenedor: centra las imágenes horizontalmente */
@@ -38,7 +38,7 @@
 
   header {
     background: var(--rosa);
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 1.5rem 2rem;
     text-align: center;
     border-bottom: 4px solid var(--rosa-oscuro);
@@ -66,7 +66,7 @@
 
   /* Panel de juez */
   .juez-panel {
-    background: white;
+    background: rgb(255, 255, 255);
     border: 1px solid var(--gris-borde);
     border-radius: 10px;
     padding: 1.5rem;
@@ -113,7 +113,7 @@
     font-size: 0.95rem;
     font-family: Georgia, serif;
     color: var(--texto);
-    background: white;
+    background: rgb(216, 251, 216);
     outline: none;
     transition: border-color 0.2s;
   }
@@ -148,7 +148,7 @@
 
   /* Secciones de rúbrica */
   .rubrica-seccion {
-    background: white;
+    background: rgb(25, 98, 25);
     border: 1px solid var(--gris-borde);
     border-radius: 10px;
     margin-bottom: 1.5rem;
@@ -168,9 +168,9 @@
     align-items: center;
   }
 
-  .seccion-header.rosa { background: var(--rosa); color: white; }
-  .seccion-header.gris { background: #555; color: white; }
-  .seccion-header.oscuro { background: #222; color: white; }
+  .seccion-header.rosa { background: var(--rosa); color: rgb(255, 255, 255); }
+  .seccion-header.gris { background:  #1f4125;; color: white; }
+  .seccion-header.oscuro { background:  #224729; color: white; }
 
   .seccion-puntos {
     font-size: 1rem;
