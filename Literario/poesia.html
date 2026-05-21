@@ -5,14 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Literarias — Festival Estudiantil de las Artes 2026</title>
 <link rel="stylesheet" href="../style.css">
+<script src="../config.js"></script>
 </head>
 <body>
 
 <header>
-  <h1> Literarias</h1>
-  <p>Festival Estudiantil de las Artes 2026 — Formulario de Calificación</p>
-</header>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
 
+    <div>
+      <h1>Poesia</h1>
+      <p>Festival Estudiantil de las Artes 2026 — Formulario de Calificación</p>
+    </div>
+
+    <!-- BOTONES -->
+    <div style="display:flex;gap:10px;">
+
+      <a href="../literario.html">
+        <button style="
+          padding:10px 18px;
+          border:none;
+          border-radius:10px;
+          background:#444;
+          color:white;
+          cursor:pointer;
+          font-weight:bold;
+        ">
+          ⬅️ Volver
+        </button>
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
 <div class="container">
 
   <!-- Info del juez y participante -->
@@ -24,9 +50,11 @@
         <input type="text" id="nombre-juez" value="Hola" readonly>
       </div>
       <script>
-        const nombre = localStorage.getItem('username');
+        const nombre = localStorage.getItem("username");
 
-        document.getElementById('nombre-juez').value = nombre || '';
+          if (nombre) {
+            document.getElementById("nombre-juez").value = nombre;
+          }
       </script>
       <div class="form-group">
         <label>Nombre del Participante</label>
@@ -265,11 +293,40 @@ function guardarCalificacion() {
     votos: {...votos}
   };
 
-  const datos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  datos.push(registro);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(datos));
+  fetch(`${API}/guardar-cuento-ilustrado`, {
 
-  mostrarAlerta("✅ Calificación guardada correctamente");
+    method: "POST",
+
+    headers: {
+        "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({
+
+        fecha: registro.fecha,
+
+        juez: registro.juez,
+
+        participante: registro.participante,
+
+        foto: registro.foto,
+
+        centro: registro.centro,
+
+        niveles: registro.niveles,
+
+        formativos: registro.sec1,
+
+        manual: registro.sec2,
+
+        tecnico: registro.sec3,
+
+        total: registro.total,
+
+        recomendada: registro.recomendada
+    })
+
+})
 }
 
 function mostrarAlerta(msg) {
